@@ -1,3 +1,5 @@
+# Lista Variaveis
+
 num_armazenado = eval((input("Insira um Número ")))
 numop = 0
 sim = 1
