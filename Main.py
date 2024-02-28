@@ -2,18 +2,26 @@ num_armazenado = eval((input("Insira um Número ")))
 numop = 0
 sim = 1
 não = 0
+escolha = 2
 
-escolha = eval(input(f"Deseja Realizar uma operação com este valor? Digite 1 para sim e 0 para não "))
+while escolha < 0 or escolha > 1 :
+    escolha = eval(input(f"Deseja Realizar uma operação com este valor? Digite 1 para sim e 0 para não "))
 
-if escolha == 0 : 
-    print(f"Seu número sem alterações é: {num_armazenado}")
+    if escolha < 0 or escolha > 1 :
+        print("Número Inválido, insira somente 0 ou 1 ")
+        
+    elif escolha == 0:
+        print(f"Seu número sem alterações é: {num_armazenado}")
+        
+    elif escolha == 1:
     
-elif escolha == 1 :
+        escolha_op = 0
     
-    escolha_op = 0
-    while escolha_op <1 or escolha_op >4:
-        escolha_op = eval(input(f"Qual operação deseja realizar? Escolha entre Subtração, Soma, Multiplicação e Divisão de 1 a 4: {1 ,2 ,3, 4} "))
-        print("Número Inválido, insira um valor de 1 a 4") 
+        while escolha_op < 1 or escolha_op > 4:
+            escolha_op = eval(input(f"Qual operação deseja realizar? Escolha entre Subtração, Soma, Multiplicação e Divisão de 1 a 4: {1 ,2 ,3, 4} "))
+            
+        if escolha_op <1 or  escolha_op > 4 :
+            print("Número Inválido, insira um valor de 1 a 4") 
         
     
         if escolha_op  == 1 :
@@ -35,13 +43,3 @@ elif escolha == 1 :
             val_Div = eval(input(f"Insira o valor para ser dividido: ")) 
             res_Div = num_armazenado / val_Div
             print(f"Seu valor dividido é: {res_Div}")
-
-else : 
-    print("Número Inserido Inválido")
-
-
-
-index = 10
-
-while index < 10:
-    print(f"pedralha{index}")
