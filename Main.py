@@ -1,11 +1,45 @@
-# Lista Variaveis
+# Funções
+def soma (num1, num2):
+    resultado = num1 + num2
+    return resultado
 
+def subt (num1, num2):
+    resultado = num1 - num2
+    return resultado
+
+def mult (num1, num2):
+    resultado = num1 * num2
+    return resultado
+
+def div (num1, num2):
+    resultado = num1 / num2
+    return resultado
+
+# Lista Variaveis
 num_armazenado = eval((input("Insira um Número ")))
-numop = 0
-sim = 1
-não = 0
+numopd = 0
 escolha = 2
 
+#Lista ([]) de Dicionários({})
+lista_produtos = [{
+    "Headsets": {
+        "Logitech": 299,
+        "Razer": 549,
+        "Astro": 799,
+    },
+    
+    "Mouses":{
+        "RedDragon": 149,
+        "Corsair": 399,
+        "HyperX": 449,
+    },
+    
+    "Teclados":{
+        "Multilaser": 50,
+        "Husky": 299,
+        "Razer": 339,
+    }
+}]
 while escolha < 0 or escolha > 1 :
     escolha = eval(input(f"Deseja Realizar uma operação com este valor? Digite 1 para sim e 0 para não "))
 
@@ -27,21 +61,62 @@ while escolha < 0 or escolha > 1 :
         
     
         if escolha_op  == 1 :
-            val_Sub = eval(input(f"Insira o valor que deseja subtrair do total: " ))
-            res_Sub = num_armazenado - val_Sub
-            print(f"Seu numero subtraido é: {res_Sub}")
+            val_subt = eval(input("Insira o valor que deseja subtrair: " ))
+            res_subt = subt(val_subt, num_armazenado)
+            print(f"Seu valor em reais após subtrar é: {res_subt}")
         
         elif escolha_op == 2 :
-            val_Soma = eval(input(f"Insira o valor a ser somado: "))
-            res_Soma = num_armazenado + val_Soma
-            print(f"Seu número já somado é: {res_Soma}")
+            val_soma = eval(input("Insira o valor que deseja somar: "))
+            res_soma = soma(val_soma, num_armazenado)
+            print(f"Seu valor em reais após somar é: {res_soma}")
         
         elif escolha_op == 3 :
-            val_Mult = eval(input(f"Insira o valor para ser multiplicado: "))
-            res_Mult = num_armazenado * val_Mult
-            print(f"Seu valor multiplicado é: {res_Mult}")
+            val_mult = eval(input("Insira o valor para ser multiplicado: "))
+            res_mult = mult(val_mult, num_armazenado)
+            print(f"Seu valor em reais após somar é: {res_mult}")
       
         elif escolha_op == 4 :
-            val_Div = eval(input(f"Insira o valor para ser dividido: ")) 
-            res_Div = num_armazenado / val_Div
-            print(f"Seu valor dividido é: {res_Div}")
+            val_div = eval(input("Insira o valor para ser dividido: ")) 
+            res_div = div(val_div, num_armazenado)
+            print(f"Seu valor em reais após dividir é: {res_div}")
+            
+pergunta_1 = input("""Bem vindo a loja PedralhaTEC, as categorias de produto que temos atualmente são as seguinte: HEADSETS -- MOUSES -- TECLADOS\n
+Escolha uma dessas 3 opções digitando o nome da categoria: """)   
+
+if "HEADSETS" in pergunta_1:
+    print(lista_produtos[0]['Headsets'] )
+    a = soma(num1=lista_produtos[0]['Headsets']['Logitech'], num2=lista_produtos[0]["Teclados"]['Multilaser'])
+    print(a)
+
+
+# ListaProdutos = [{
+#     "Headsets": {
+#         "Logitech": 299,
+#         "Razer": 549,
+#         "Astro": 799,
+#     },
+    
+#     "Mouses":{
+#         "RedDragon": 149,
+#         "Corsair": 399,
+#         "HyperX": 449,
+#     },
+    
+#     "Teclados":{
+#         "Multilaser": 50,
+#         "Husky": 299,
+#         "Razer": 339,
+#     }
+# }]
+     
+    
+          
+
+
+
+
+          
+          
+          
+
+
