@@ -83,11 +83,24 @@ while escolha < 0 or escolha > 1 :
 pergunta_1 = input("""Bem vindo a loja PedralhaTEC, as categorias de produto que temos atualmente são as seguinte: HEADSETS -- MOUSES -- TECLADOS\n
 Escolha uma dessas 3 opções digitando o nome da categoria: """)   
 
-if "HEADSETS" in pergunta_1:
-    print(lista_produtos[0]['Headsets'] )
-    a = soma(num1=lista_produtos[0]['Headsets']['Logitech'], num2=lista_produtos[0]["Teclados"]['Multilaser'])
-    print(a)
+if "HEADSETS" == pergunta_1:
+    perg_head= input(f"Temos os seguintes Headsets disponíveis, selecione qual deseja comprar:{lista_produtos[0]['Headsets']} ")
+    
+    if "Astro" == perg_head:
+        print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado - 299}")
+      
+        
+# elif "MOUSES" in pergunta_1:
+#     eval(input(f"Temos os seguinte Mouses disponíveis, selecione qual deseja comprar:{lista_produtos[0]['Headsets']} "))
 
+# elif "TECLADOS" in pergunta_1:
+#     eval(input(f"Temos os seguintes Teclados disponíveis, selecione qual deseja comprar:{lista_produtos[0]['Headsets']} "))
+    
+# else:
+#     print("Insira uma categoria de produto válida.")
+    
+    
+    
 
 # ListaProdutos = [{
 #     "Headsets": {
