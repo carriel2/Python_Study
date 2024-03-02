@@ -37,7 +37,7 @@ lista_produtos = [{
     "Teclados":{
         "Multilaser": 50,
         "Husky": 299,
-        "Razer": 339,
+        "Gamer G": 149,
     }
 }]
 while escolha < 0 or escolha > 1 :
@@ -84,22 +84,51 @@ pergunta_1 = input("""Bem vindo a loja PedralhaTEC, as categorias de produto que
 Escolha uma dessas 3 opções digitando o nome da categoria: """)   
 
 if "HEADSETS" == pergunta_1:
-    perg_head= input(f"Temos os seguintes Headsets disponíveis, selecione qual deseja comprar:{lista_produtos[0]['Headsets']} ")
+    perg_head = input(f"Temos os seguintes Headsets disponíveis, selecione qual deseja comprar:{lista_produtos[0]['Headsets']} ")
     
     if "Astro" == perg_head:
-        print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado - 299}")
-      
+        print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado - 799} ")
         
-# elif "MOUSES" in pergunta_1:
-#     eval(input(f"Temos os seguinte Mouses disponíveis, selecione qual deseja comprar:{lista_produtos[0]['Headsets']} "))
+    elif "Logitech" == perg_head:
+        print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado - 299} ")
+        
+    elif "Razer" == perg_head:
+        print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado - 549} ")
+        
+    else:
+        print("Insira um produto válido")
 
-# elif "TECLADOS" in pergunta_1:
-#     eval(input(f"Temos os seguintes Teclados disponíveis, selecione qual deseja comprar:{lista_produtos[0]['Headsets']} "))
+if "MOUSES" == pergunta_1:
+    perg_head = input(f"Temos os seguintes Mouses disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Mouses']} ")
     
-# else:
-#     print("Insira uma categoria de produto válida.")
+    if "RedDragon" == perg_head:
+        print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado - 149} ")
+        
+    elif "Corsair" == perg_head:
+        print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado - 399} ")
     
+    elif "HyperX" == perg_head:
+        print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado - 449} ")
     
+    else:
+        print("Insira um produto válido")
+        
+if "TECLADOS" == perg_head:
+    perg_head = input(f"Temos os seguintes Teclados disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Teclados']} ")
+    
+    if "Multilaser" == perg_head:
+        print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado - 50}")
+
+    elif "Husky" == perg_head:
+        print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado - 299} ")
+        
+    elif "Gamer G" == perg_head:
+        print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado - 149}")
+    
+
+        
+
+          
     
 
 # ListaProdutos = [{
@@ -121,6 +150,31 @@ if "HEADSETS" == pergunta_1:
 #         "Razer": 339,
 #     }
 # }]
+
+# ListaValores = [{
+#     "Headsets":{
+#         299,
+#         549,
+#         799, 
+#     }
+    
+#     "Mouses":{
+#         149,
+#         399,
+#         449,
+#     }
+#     "Teclados":{
+#         50,
+#         299,
+#         339,
+#     }
+# }]
+    
+    
+    
+    
+    
+#     }]
      
     
           
