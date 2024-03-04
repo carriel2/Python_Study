@@ -93,84 +93,97 @@ num_armazenado
 #Bloco de perguntas lojinha
 compras = [] 
 total_compras = 0
-while num_armazenado >= 50: 
-
+acessos = 0
+while num_armazenado >= 50:
+    
+    if acessos > 0:
+        input('Deseja comprar mais algum produto? Digite Sim ou Não.')
+    
     pergunta_1 = input("""Bem vindo a loja PedralhaTEC, as categorias de produto que temos atualmente são as seguinte: HEADSETS -- MOUSES -- TECLADOS\n
     Escolha uma dessas 3 opções digitando o nome da categoria: """)
-
-
-    if "HEADSETS" == pergunta_1:
-        pergunta2 = input(f"Temos os seguintes Headsets disponíveis, selecione qual deseja comprar:{lista_produtos[0]['Headsets']} ")
-    
-        if "Astro" == pergunta2:
-            num_armazenado = subt(num_armazenado, 799)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado}")
-            compras.append('Astro - 799')
-            total_compras += 799
-            
-        elif "Logitech" == pergunta2:
-            num_armazenado = subt(num_armazenado, 299)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
-            compras.append('Logitech - 299')
-            total_compras += 299
-            
-        elif "Razer" == pergunta2:
-            num_armazenado = subt(num_armazenado, 549)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
-            compras.append('Razer - 549')
-            total_compras += 549
-            
-        else:
-            print("Insira um produto válido")
-
-    elif "MOUSES" == pergunta_1:
-        pergunta2 = input(f"Temos os seguintes Mouses disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Mouses']} ")
-
-        if "RedDragon" == pergunta2:
-            num_armazenado = subt(num_armazenado, 149)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
-            compras.append('RedDragon - 149')
-            total_compras += 149
         
-        elif "Corsair" == pergunta2:
-            num_armazenado = subt(num_armazenado, 399)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
-            compras.append('Corsair - 399')
-            total_compras += 399
-    
-        elif "HyperX" == pergunta2:
-            num_armazenado = subt(num_armazenado, 449)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
-            compras.append('HyperX - 449')
-            total_compras += 449
-    
-        else:
-            print("Insira um produto válido")
+    acessos += 1
+           
+    if 'Sim':           
+
+
+        if "HEADSETS" == pergunta_1:
+            pergunta2 = input(f"Temos os seguintes Headsets disponíveis, selecione qual deseja comprar:{lista_produtos[0]['Headsets']} ")
+            
+            if "Astro" == pergunta2:
+                num_armazenado = subt(num_armazenado, 799)
+                print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado}")
+                compras.append('Astro - 799')
+                total_compras += 799
         
-    elif "TECLADOS" == pergunta_1:
-        pergunta2 = input(f"Temos os seguintes Teclados disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Teclados']} ")
-    
-        if "Multilaser" == pergunta2:
-            num_armazenado = subt(num_armazenado, 50)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado}")
-            compras.append('Multilaser - 50 reais')
-            total_compras += 50
-
-        elif "Husky" == pergunta2:
-            num_armazenado = subt(num_armazenado, 299)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
-            compras.append('Husky - 299 reais')
-            total_compras += 299
+            elif "Logitech" == pergunta2:
+                num_armazenado = subt(num_armazenado, 299)
+                print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
+                compras.append('Logitech - 299')
+                total_compras += 299
         
-        elif "Gamer G" == pergunta2:
-            num_armazenado = subt(num_armazenado, 149)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado}")
-            compras.append('Gamer G - 149')
-            total_compras += 149
+            elif "Razer" == pergunta2:
+                num_armazenado = subt(num_armazenado, 549)
+                print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
+                compras.append('Razer - 549')
+                total_compras += 549
+            
+            else:
+                print("Insira um produto válido")
 
+        elif "MOUSES" == pergunta_1:
+            pergunta2 = input(f"Temos os seguintes Mouses disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Mouses']} ")
 
+            if "RedDragon" == pergunta2:
+                    num_armazenado = subt(num_armazenado, 149)
+                    print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
+                    compras.append('RedDragon - 149')
+                    total_compras += 149
+            
+            elif "Corsair" == pergunta2:
+                num_armazenado = subt(num_armazenado, 399)
+                print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
+                compras.append('Corsair - 399')
+                total_compras += 399
 
+            elif "HyperX" == pergunta2:
+                num_armazenado = subt(num_armazenado, 449)
+                print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
+                compras.append('HyperX - 449')
+                total_compras += 449
+
+            else:
+                print("Insira um produto válido")
+            
+        elif "TECLADOS" == pergunta_1:
+            pergunta2 = input(f"Temos os seguintes Teclados disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Teclados']} ")
+        
+            if "Multilaser" == pergunta2:
+                    num_armazenado = subt(num_armazenado, 50)
+                    print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado}")
+                    compras.append('Multilaser - 50 reais')
+                    total_compras += 50
+
+            elif "Husky" == pergunta2:
+                    num_armazenado = subt(num_armazenado, 299)
+                    print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
+                    compras.append('Husky - 299 reais')
+                    total_compras += 299
+            
+            elif "Gamer G" == pergunta2:
+                    num_armazenado = subt(num_armazenado, 149)
+                    print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado}")
+                    compras.append('Gamer G - 149')
+                    total_compras += 149
+                    
+if num_armazenado < 50:
+        print("Saldo Insuficiente!")
+        
 print(f'Seu carrinho atual é: {compras}\n Com valor total de {total_compras}')
+
+
+name = input("What is your name? ")
+print("Hello, " + name + "!")
 
      
     
