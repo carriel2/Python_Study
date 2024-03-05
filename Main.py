@@ -17,27 +17,31 @@ def div (num1, num2):
 
 # Lista Variaveis
 num_armazenado = eval((input("Insira um Número ")))
-numopd = 0
 escolha = 2
+escolha_op = 0
+compras = [] 
+total_compras = 0
+final_valor = 0
+JUROS = 0.017
 
 #Lista ([]) de Dicionários({})
 lista_produtos = [{
     "Headsets": {
-        "Logitech": 299,
-        "Razer": 549,
-        "Astro": 799,
+        "LOGITECH": 299,
+        "RAZER": 549,
+        "ASTRO": 799,
     },
     
     "Mouses":{
-        "RedDragon": 149,
-        "Corsair": 399,
-        "HyperX": 449,
+        "REDDRAGON": 149,
+        "CORSAIR": 399,
+        "HYPERX": 449,
     },
     
     "Teclados":{
-        "Multilaser": 50,
-        "Husky": 299,
-        "Gamer G": 149,
+        "MULTILASER": 50,
+        "HUSKY": 299,
+        "GAMER G": 149,
     }
 }]
 
@@ -52,8 +56,6 @@ while escolha < 0 or escolha > 1 :
         print(f"Seu número sem alterações é: {num_armazenado}")
         
     elif escolha == 1:
-    
-        escolha_op = 0
     
         while escolha_op < 1 or escolha_op > 4:
             escolha_op = eval(input(f"Qual operação deseja realizar? Escolha entre Subtração, Soma, Multiplicação e Divisão de 1 a 4: {1 ,2 ,3, 4} "))
@@ -91,30 +93,28 @@ while escolha < 0 or escolha > 1 :
 num_armazenado
 
 #Bloco de perguntas lojinha
-compras = [] 
-total_compras = 0
+
 while num_armazenado >= 50: 
 
     pergunta_1 = input("""Bem vindo a loja PedralhaTEC, as categorias de produto que temos atualmente são as seguinte: HEADSETS -- MOUSES -- TECLADOS\n
-    Escolha uma dessas 3 opções digitando o nome da categoria: """)
-
-
-    if "HEADSETS" == pergunta_1:
-        pergunta2 = input(f"Temos os seguintes Headsets disponíveis, selecione qual deseja comprar:{lista_produtos[0]['Headsets']} ")
+    Escolha uma dessas 3 opções digitando o nome da categoria: """).upper()
     
-        if "Astro" == pergunta2:
+    if "HEADSETS" == pergunta_1:
+        pergunta2 = input(f"Temos os seguintes Headsets disponíveis, selecione qual deseja comprar:{lista_produtos[0]['Headsets']} ").upper()
+    
+        if "ASTRO" == pergunta2:
             num_armazenado = subt(num_armazenado, 799)
             print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado}")
             compras.append('Astro - 799')
             total_compras += 799
             
-        elif "Logitech" == pergunta2:
+        elif "LOGITECH" == pergunta2:
             num_armazenado = subt(num_armazenado, 299)
             print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
             compras.append('Logitech - 299')
             total_compras += 299
             
-        elif "Razer" == pergunta2:
+        elif "RAZER" == pergunta2:
             num_armazenado = subt(num_armazenado, 549)
             print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
             compras.append('Razer - 549')
@@ -124,21 +124,21 @@ while num_armazenado >= 50:
             print("Insira um produto válido")
 
     elif "MOUSES" == pergunta_1:
-        pergunta2 = input(f"Temos os seguintes Mouses disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Mouses']} ")
+        pergunta2 = input(f"Temos os seguintes Mouses disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Mouses']} ").upper()
 
-        if "RedDragon" == pergunta2:
+        if "REDDRAGON" == pergunta2:
             num_armazenado = subt(num_armazenado, 149)
             print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
             compras.append('RedDragon - 149')
             total_compras += 149
         
-        elif "Corsair" == pergunta2:
+        elif "CORSAIR" == pergunta2:
             num_armazenado = subt(num_armazenado, 399)
             print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
             compras.append('Corsair - 399')
             total_compras += 399
     
-        elif "HyperX" == pergunta2:
+        elif "HYPERX" == pergunta2:
             num_armazenado = subt(num_armazenado, 449)
             print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
             compras.append('HyperX - 449')
@@ -148,30 +148,44 @@ while num_armazenado >= 50:
             print("Insira um produto válido")
         
     elif "TECLADOS" == pergunta_1:
-        pergunta2 = input(f"Temos os seguintes Teclados disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Teclados']} ")
+        pergunta2 = input(f"Temos os seguintes Teclados disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Teclados']} ").upper()
     
-        if "Multilaser" == pergunta2:
+        if "MULTILASER" == pergunta2:
             num_armazenado = subt(num_armazenado, 50)
             print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado}")
             compras.append('Multilaser - 50 reais')
             total_compras += 50
 
-        elif "Husky" == pergunta2:
+        elif "HUSKY" == pergunta2:
             num_armazenado = subt(num_armazenado, 299)
             print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
             compras.append('Husky - 299 reais')
             total_compras += 299
         
-        elif "Gamer G" == pergunta2:
+        elif "GAMER G" == pergunta2:
             num_armazenado = subt(num_armazenado, 149)
             print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado}")
             compras.append('Gamer G - 149')
             total_compras += 149
-
-
-
-print(f'Seu carrinho atual é: {compras}\n Com valor total de {total_compras}')
-
+        
+        else:
+            print("Insira um produto válido")
+    
+    final_valor = eval(input(f'Seu carrinho atual é: {compras}\n Com valor total de {total_compras}, deseja parcelar em até 6x com juros? digite 1 para sim e 0 para não. '))
+    
+    while final_valor != 0  and final_valor != 1:
+        final_valor = eval(input("Insira uma opção válida "))
+        
+    if final_valor == 1:
+        num_parcelas = eval(input(f"Em quantas vezes deseja parcelar?Digite de 2 a 6 quantas prestações deseja(Máximo de 6x com juros) "))
+        valor_parcela = (total_compras * (1 + JUROS) ** num_parcelas) / num_parcelas
+        
+        if num_parcelas <= 6 :
+            print(f"Sua compra foi parcelada em {num_parcelas}x, com um valor a ser pago por mês de {valor_parcela} ")
+        
+    elif final_valor == 0:
+        print(f"Já que não deseja parcelar, seu valor total de compra é de {total_compras}")
+    
      
     
           
