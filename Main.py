@@ -16,7 +16,7 @@ def div (num1, num2):
     return resultado
 
 # Lista Variaveis
-num_armazenado = eval((input("Insira um Número ")))
+num_armazenado = 'A'
 escolha = 2
 escolha_op = 0
 compras = [] 
@@ -45,6 +45,8 @@ lista_produtos = [{
     }
 }]
 
+num_armazenado = eval((input("Insira um Número ")))
+
 #Bloco de Operações Matemáticas
 while escolha < 0 or escolha > 1 :
     escolha = eval(input(f"Deseja Realizar uma operação com este valor? Digite 1 para sim e 0 para não "))
@@ -68,7 +70,7 @@ while escolha < 0 or escolha > 1 :
             val_subt = eval(input("Insira o valor que deseja subtrair: " ))
             res_subt = subt(val_subt, num_armazenado)
             resultados = res_subt
-            print(f"Seu valor em reais após subtrar é: {res_subt}")
+            print(f"Seu valor em reais após subtrair é: {res_subt}")
         
         elif escolha_op == 2 :
             val_soma = eval(input("Insira o valor que deseja somar: "))
@@ -80,7 +82,7 @@ while escolha < 0 or escolha > 1 :
             val_mult = eval(input("Insira o valor para ser multiplicado: "))
             res_mult = mult(val_mult, num_armazenado)
             resultados = res_mult
-            print(f"Seu valor em reais após somar é: {res_mult}")
+            print(f"Seu valor em reais após multiplicar é: {res_mult}")
       
         elif escolha_op == 4 :
             val_div = eval(input("Insira o valor para ser dividido: ")) 
@@ -103,22 +105,25 @@ while num_armazenado >= 50:
         pergunta2 = input(f"Temos os seguintes Headsets disponíveis, selecione qual deseja comprar:{lista_produtos[0]['Headsets']} ").upper()
     
         if "ASTRO" == pergunta2:
-            num_armazenado = subt(num_armazenado, 799)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado}")
+            qtd_compra = int(input("Digite a quantidade que deseja comprar: "))
+            num_armazenado -= 799 * qtd_compra
+            print(f"Compra realizada com sucesso! Você comprou {qtd_compra} unidades! Seu novo saldo é de {num_armazenado} ")
             compras.append('Astro - 799')
-            total_compras += 799
+            total_compras += 799 * qtd_compra
             
         elif "LOGITECH" == pergunta2:
-            num_armazenado = subt(num_armazenado, 299)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
+            qtd_compra = int(input("Digite a quantidade que deseja comprar: "))
+            num_armazenado -= 299 * qtd_compra
+            print(f"Compra realizada com sucesso! Você comprou {qtd_compra} unidades! Seu novo saldo é de {num_armazenado} ")
             compras.append('Logitech - 299')
-            total_compras += 299
+            total_compras += 299 * qtd_compra
             
         elif "RAZER" == pergunta2:
-            num_armazenado = subt(num_armazenado, 549)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
+            qtd_compra = int(input)("Digite a quantidade que deseja comprar: ")
+            num_armazenado -= 549 * qtd_compra
+            print(f"Compra realizada com sucesso! Você comprou {qtd_compra} unidades! Seu novo saldo é de {num_armazenado} ")
             compras.append('Razer - 549')
-            total_compras += 549
+            total_compras += 549 * qtd_compra
             
         else:
             print("Insira um produto válido")
@@ -127,22 +132,25 @@ while num_armazenado >= 50:
         pergunta2 = input(f"Temos os seguintes Mouses disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Mouses']} ").upper()
 
         if "REDDRAGON" == pergunta2:
-            num_armazenado = subt(num_armazenado, 149)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
+            qtd_compra = int(input("Digite a quantidade que deseja comprar: "))
+            num_armazenado -= 149 * qtd_compra
+            print(f"Compra realizada com sucesso! Você comprou {qtd_compra} unidades! Seu novo saldo é de {num_armazenado} ")
             compras.append('RedDragon - 149')
-            total_compras += 149
+            total_compras += 149 * qtd_compra
         
         elif "CORSAIR" == pergunta2:
-            num_armazenado = subt(num_armazenado, 399)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
+            qtd_compra = int(input("Digite a quantidade que deseja comprar: "))
+            num_armazenado -= 399 * qtd_compra
+            print(f"Compra realizada com sucesso! Você comprou {qtd_compra} unidades! Seu novo saldo é de {num_armazenado} ")
             compras.append('Corsair - 399')
-            total_compras += 399
+            total_compras += 399 * qtd_compra
     
         elif "HYPERX" == pergunta2:
-            num_armazenado = subt(num_armazenado, 449)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
+            num_armazenado = int(input("Digite a quantidade que deseja comprar: "))
+            num_armazenado -= 149 * qtd_compra
+            print(f"Compra realizada com sucesso! Você comprou {qtd_compra} unidades! Seu novo saldo é de: {num_armazenado} ")
             compras.append('HyperX - 449')
-            total_compras += 449
+            total_compras += 449 * qtd_compra
     
         else:
             print("Insira um produto válido")
@@ -151,40 +159,43 @@ while num_armazenado >= 50:
         pergunta2 = input(f"Temos os seguintes Teclados disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Teclados']} ").upper()
     
         if "MULTILASER" == pergunta2:
-            num_armazenado = subt(num_armazenado, 50)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado}")
+            num_armazenado = int(input("Digite a quantidade que deseja comprar: "))
+            num_armazenado -= 50 * qtd_compra
+            print(f"Compra realizada com sucesso! Você comprou {qtd_compra} unidades! Seu novo saldo é de: {num_armazenado}")
             compras.append('Multilaser - 50 reais')
-            total_compras += 50
+            total_compras += 50 * qtd_compra
 
         elif "HUSKY" == pergunta2:
-            num_armazenado = subt(num_armazenado, 299)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
+            num_armazenado = int(input("Digite a quantidade que deseja comprar: "))
+            num_armazenado -= 299 * qtd_compra
+            print(f"Compra realizada com sucesso! Você comprou {qtd_compra} unidades! Seu novo saldo é de: {num_armazenado} ")
             compras.append('Husky - 299 reais')
-            total_compras += 299
+            total_compras += 299 * qtd_compra
         
         elif "GAMER G" == pergunta2:
-            num_armazenado = subt(num_armazenado, 149)
-            print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado}")
+            num_armazenado = int(input("Digite a quantidade que deseja comprar: "))
+            num_armazenado -= 149 * qtd_compra
+            print(f"Compra realizada com sucesso! Você comprou {qtd_compra} unidades! Seu novo saldo é de: {num_armazenado}")
             compras.append('Gamer G - 149')
-            total_compras += 149
+            total_compras += 149 * qtd_compra
         
         else:
             print("Insira um produto válido")
     
-    final_valor = eval(input(f'Seu carrinho atual é: {compras}\n Com valor total de {total_compras}, deseja parcelar em até 6x com juros? digite 1 para sim e 0 para não. '))
+final_valor = eval(input(f'Seu carrinho atual é: {qtd_compra} unidades de {compras}\n Com valor total de {total_compras}, deseja parcelar em até 6x com juros? digite 1 para sim e 0 para não. '))
+
+while final_valor != 0  and final_valor != 1:
+    final_valor = eval(input("Insira uma opção válida "))
     
-    while final_valor != 0  and final_valor != 1:
-        final_valor = eval(input("Insira uma opção válida "))
-        
-    if final_valor == 1:
-        num_parcelas = eval(input(f"Em quantas vezes deseja parcelar?Digite de 2 a 6 quantas prestações deseja(Máximo de 6x com juros) "))
-        valor_parcela = (total_compras * (1 + JUROS) ** num_parcelas) / num_parcelas
-        
-        if num_parcelas <= 6 :
-            print(f"Sua compra foi parcelada em {num_parcelas}x, com um valor a ser pago por mês de {valor_parcela} ")
-        
-    elif final_valor == 0:
-        print(f"Já que não deseja parcelar, seu valor total de compra é de {total_compras}")
+if final_valor == 1:
+    num_parcelas = eval(input(f"Em quantas vezes deseja parcelar?Digite de 2 a 6 quantas prestações deseja(Máximo de 6x com juros) "))
+    valor_parcela = (total_compras * (1 + JUROS) ** num_parcelas) / num_parcelas
+    
+    if num_parcelas <= 6 :
+        print(f"Sua compra foi parcelada em {num_parcelas}x, com um valor a ser pago por mês de {valor_parcela} ")
+    
+elif final_valor == 0:
+    print(f"Já que não deseja parcelar, seu valor total de compra é de {total_compras}")
     
      
     
