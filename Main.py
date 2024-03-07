@@ -1,26 +1,4 @@
 #Melhoria IF ELSE operadores (classe e funcao)
-#
-
-# Funções
-def soma (num1, num2):
-    resultado = num1 + num2
-    return resultado
-
-def subt (num1, num2):
-    resultado = num1 - num2
-    return resultado
-
-def mult (num1, num2):
-    resultado = num1 * num2
-    return resultado
-
-def div (num1, num2):
-    resultado = num1 / num2
-    return resultado
-
-def resultado_operacoes():
-    teste = print("Seu valor em reais é:")
-    return teste
 # Lista Variaveis
 num_armazenado = 'A'
 escolha = 2
@@ -29,6 +7,47 @@ compras = []
 total_compras = 0
 final_valor = 0
 JUROS = 0.017
+
+# Funções
+
+def calculos (operação, num_armazenado):
+    while operação not in ["soma", "subtração", "multiplicação", "divisão", "nenhuma"]:
+        (input("Insira uma operação válida "))
+    
+    valor_inserido = eval(input("Insira um valor: "))
+        
+    if operação == "soma":
+        return num_armazenado + valor_inserido
+    elif operação == "subtração":
+        return num_armazenado - valor_inserido
+    elif operação == "multiplicação":
+        return num_armazenado * valor_inserido
+    elif operação == "divisão":
+        return num_armazenado / valor_inserido
+    elif operação == "nenhuma":
+        return (f"Seu número sem alterações é: {num_armazenado}")
+    
+
+# def subtração ():
+#     val_subt = eval(input("Insira um valor para ser subtraído "))
+#     total_subt = num_armazenado - val_subt
+#     return total_subt
+
+# def soma ():
+#     val_soma = eval(input("Insira um valor para ser somado "))
+#     total_soma = num_armazenado + val_soma
+#     return total_soma
+
+# def multiplicação ():
+#     val_mult = eval(input("Insira um valor para ser multiplicado "))
+#     total_mult = num_armazenado * val_mult
+#     return total_mult
+
+
+# def divisão ():
+#     val_div = eval(input("Insira um valor para ser dividido "))
+#     total_div = num_armazenado / val_div
+#     return total_div
 
 #Lista ([]) de Dicionários({})
 lista_produtos = [{
@@ -51,57 +70,13 @@ lista_produtos = [{
     }
 }]
 
+#Bloco de Operações Matemáticas
 num_armazenado = eval((input("Insira um Número ")))
 
-#Bloco de Operações Matemáticas
-while escolha < 0 or escolha > 1 :
-    escolha = eval(input(f"Deseja Realizar uma operação com este valor? Digite 1 para sim e 0 para não "))
+operação = input("Digite a operação desejada: (soma, subtração, divisão, multiplicação ou nenhuma) ").lower()
+resultado = calculos(operação,num_armazenado)
 
-    if escolha < 0 or escolha > 1 :
-        print("Número Inválido, insira somente 0 ou 1 ")
-        
-    elif escolha == 0:
-        print(f"Seu número sem alterações é: {num_armazenado}")
-        
-    elif escolha == 1:
-    
-        while escolha_op < 1 or escolha_op > 4:
-            escolha_op = eval(input(f"Qual operação deseja realizar? Escolha entre Subtração, Soma, Multiplicação e Divisão de 1 a 4: {1 ,2 ,3, 4} "))
-            
-        if escolha_op < 1 or  escolha_op > 4 :
-            print("Número Inválido, insira um valor de 1 a 4") 
-        
-    
-        if escolha_op  == 1 :
-            val_subt = eval(input("Insira o valor que deseja subtrair: " ))
-            res_subt = subt(val_subt, num_armazenado)
-            resultados = res_subt
-            print(f"Seu valor em reais após subtrair é: {res_subt}")
-            
-        
-        elif escolha_op == 2 :
-            val_soma = eval(input("Insira o valor que deseja somar: "))
-            res_soma = soma(val_soma, num_armazenado)
-            resultados = res_soma
-            print(f"Seu valor em reais após somar é: {res_soma}")
-            resultados
-            num_armazenado = resultados
-            
-        elif escolha_op == 3 :
-            val_mult = eval(input("Insira o valor para ser multiplicado: "))
-            res_mult = mult(val_mult, num_armazenado)
-            resultados = res_mult
-            print(f"Seu valor em reais após multiplicar é: {res_mult}")
-            resultados
-            num_armazenado = resultados
-            
-        elif escolha_op == 4 :
-            val_div = eval(input("Insira o valor para ser dividido: ")) 
-            res_div = div(val_div, num_armazenado)
-            resultados = res_div
-            print(f"Seu valor em reais após dividir é: {res_div}")
-            resultados
-            num_armazenado = resultados
+print(f"Resultado: {resultado}")
 
 #Bloco de perguntas lojinha
 while num_armazenado >= 50: 
