@@ -1,3 +1,6 @@
+#Melhoria IF ELSE operadores (classe e funcao)
+#
+
 # Funções
 def soma (num1, num2):
     resultado = num1 + num2
@@ -15,6 +18,9 @@ def div (num1, num2):
     resultado = num1 / num2
     return resultado
 
+def resultado_operacoes():
+    teste = print("Seu valor em reais é:")
+    return teste
 # Lista Variaveis
 num_armazenado = 'A'
 escolha = 2
@@ -62,7 +68,7 @@ while escolha < 0 or escolha > 1 :
         while escolha_op < 1 or escolha_op > 4:
             escolha_op = eval(input(f"Qual operação deseja realizar? Escolha entre Subtração, Soma, Multiplicação e Divisão de 1 a 4: {1 ,2 ,3, 4} "))
             
-        if escolha_op <1 or  escolha_op > 4 :
+        if escolha_op < 1 or  escolha_op > 4 :
             print("Número Inválido, insira um valor de 1 a 4") 
         
     
@@ -71,19 +77,24 @@ while escolha < 0 or escolha > 1 :
             res_subt = subt(val_subt, num_armazenado)
             resultados = res_subt
             print(f"Seu valor em reais após subtrair é: {res_subt}")
+            
         
         elif escolha_op == 2 :
             val_soma = eval(input("Insira o valor que deseja somar: "))
             res_soma = soma(val_soma, num_armazenado)
             resultados = res_soma
             print(f"Seu valor em reais após somar é: {res_soma}")
-        
+            resultados
+            num_armazenado = resultados
+            
         elif escolha_op == 3 :
             val_mult = eval(input("Insira o valor para ser multiplicado: "))
             res_mult = mult(val_mult, num_armazenado)
             resultados = res_mult
             print(f"Seu valor em reais após multiplicar é: {res_mult}")
-      
+            resultados
+            num_armazenado = resultados
+            
         elif escolha_op == 4 :
             val_div = eval(input("Insira o valor para ser dividido: ")) 
             res_div = div(val_div, num_armazenado)
@@ -92,10 +103,7 @@ while escolha < 0 or escolha > 1 :
             resultados
             num_armazenado = resultados
 
-num_armazenado
-
 #Bloco de perguntas lojinha
-
 while num_armazenado >= 50: 
 
     pergunta_1 = input("""Bem vindo a loja PedralhaTEC, as categorias de produto que temos atualmente são as seguinte: HEADSETS -- MOUSES -- TECLADOS\n
@@ -192,8 +200,6 @@ print(f"O total da sua compra é de: {total_compras}")
 
 print(quantidade_total) 
     
-final_valor = eval(input(f'Seu carrinho atual é: {quantidade_itens_pedido} unidades de {compras}\n Com valor total de {total_compras}, deseja parcelar em até 6x com juros? digite 1 para sim e 0 para não. '))
-
 while final_valor != 0  and final_valor != 1:
     final_valor = eval(input("Insira uma opção válida "))
     
