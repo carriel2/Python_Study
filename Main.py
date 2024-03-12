@@ -1,41 +1,51 @@
 #Melhoria IF ELSE operadores (classe e funcao)
 # Lista Variaveis
-num_armazenado = None
+saldo = None
 escolha = 2
 escolha_op = 0
 compras = [] 
 total_compras = 0
 final_valor = 0
 JUROS = 0.017
+subtotal = 0
 
 # Funções
-def categoria():
+def escolher_categoria():
+    print("Bem-vindo à loja PedralhaTEC, escolha entre as categorias disponíveis: HEADSETS - TECLADOS - MOUSES")
     
-    ("Bem vindo à loja PedralhaTEC, escolha entre as categorias disponíveis: HEADSTES - TECLADOS - MOUSES")
-    escolha_categoria = input("Qual categoria deseja visualizar?")
+    escolha_categoria = input("Qual categoria deseja visualizar? ").upper()
     
-    while produto not in lista_produtos:
-        produto = (input("Insira um produto válido!"))
+    while escolha_categoria not in ["HEADSETS", "TECLADOS", "MOUSES"]:
+        escolha_categoria = input("Insira uma categoria válida: HEADSETS, TECLADOS ou MOUSES ").upper()
         
     return escolha_categoria
 
-def calculos (operação, num_armazenado):
+def produtos_categorias(saldo, subtotal):
+    global categoria_escolhida
+    
+    if categoria_escolhida == 'HEADSETS':
+      teste = print(f"Temos os seguintes headsets disponíveis: {lista_produtos[0], }")
+    elif categoria_escolhida == 'TECLADOS':
+        
+        return teste
+        
+def calculos (operação, saldo):
     while operação not in ["soma", "subtração", "multiplicação", "divisão", "nenhuma"]:
         operação = (input("Insira uma operação válida "))
     
     if operação	== "nenhuma":
-        return (f"Seu número sem alterações é: {num_armazenado}")
+        return (f"Seu número sem alterações é: {saldo}")
     
     valor_inserido = eval(input("Insira um valor: "))
         
     if operação == "soma":
-        return num_armazenado + valor_inserido
+        return saldo + valor_inserido
     elif operação == "subtração":
-        return num_armazenado - valor_inserido
+        return saldo - valor_inserido
     elif operação == "multiplicação":
-        return num_armazenado * valor_inserido
+        return saldo * valor_inserido
     elif operação == "divisão":
-        return num_armazenado / valor_inserido
+        return saldo / valor_inserido
     
 #Lista ([]) de Dicionários({})
 lista_produtos = [{
@@ -59,18 +69,22 @@ lista_produtos = [{
 }]
 
 #Bloco de Operações Matemáticas
-while not isinstance(num_armazenado, (int, float)):
+while not isinstance(saldo, (int, float)):
     try:
-        num_armazenado = eval(input("Insira um número "))
+        saldo = eval(input("Insira um número "))
     except ValueError: 
         print("ERRO: Insira apenas números")
 
 operação = input("Digite a operação desejada: (soma, subtração, divisão, multiplicação ou nenhuma) ").lower()
-resultado = calculos(operação,num_armazenado)
+resultado = calculos(operação,saldo)
 
 print(f"Resultado: {resultado}")
 
-print(categoria)
+categoria_escolhida = escolher_categoria()
+print(f'{categoria_escolhida}')
+teste1 = produtos_categorias(saldo, subtotal)
+print(f'{teste1}')
+
 
 
 
