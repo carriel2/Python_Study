@@ -11,11 +11,9 @@ subtotal = 0
 
 # Funções
 def escolher_categoria():
-    print("Bem-vindo à loja PedralhaTEC, escolha entre as categorias disponíveis: HEADSETS - TECLADOS - MOUSES")
-    
     escolha_categoria = input("Qual categoria deseja visualizar? ").upper()
     
-    while escolha_categoria not in ["HEADSETS", "TECLADOS", "MOUSES"]:
+    while escolha_categoria not in ['HEADSETS', 'MOUSES', 'TECLADOS']:
         escolha_categoria = input("Insira uma categoria válida: HEADSETS, TECLADOS ou MOUSES ").upper()
         
     return escolha_categoria
@@ -23,11 +21,15 @@ def escolher_categoria():
 def produtos_categorias(saldo, subtotal):
     global categoria_escolhida
     
+    Lheadsets = ['Astro', 'Razer', 'Logitech']
+    
     if categoria_escolhida == 'HEADSETS':
-      teste = print(f"Temos os seguintes headsets disponíveis: {lista_produtos[0], }")
-    elif categoria_escolhida == 'TECLADOS':
+        headsets = input(f"Temos os seguintes headsets disponíveis:{Lheadsets}, qual deseja comprar? ").title()
         
-        return teste
+    while headsets not in Lheadsets:
+        headsets = input("Insira um headset que esteja disponível. ").title()
+        
+    return  
         
 def calculos (operação, saldo):
     while operação not in ["soma", "subtração", "multiplicação", "divisão", "nenhuma"]:
@@ -48,42 +50,46 @@ def calculos (operação, saldo):
         return saldo / valor_inserido
     
 #Lista ([]) de Dicionários({})
-lista_produtos = [{
-    "headsets": {
-        "logitech": 299,
-        "razer": 549,
-        "astro": 799,
-    },
+# lista_produtos = [{
+#     "headsets": {
+#         "logitech": 299,
+#         "razer": 549,
+#         "astro": 799,
+#     },
     
-    "mouses":{
-        "reddragon": 149,
-        "corsair": 399,
-        "hyperx": 449,
-    },
+#     "mouses":{
+#         "reddragon": 149,
+#         "corsair": 399,
+#         "hyperx": 449,
+#     },
     
-    "teclados":{
-        "multilaser": 50,
-        "husky": 299,
-        "gamer g": 149,
-    }
-}]
+#     "teclados":{
+#         "multilaser": 50,
+#         "husky": 299,
+#         "gamer g": 149,
+#     }
+# }]
 
 #Bloco de Operações Matemáticas
-while not isinstance(saldo, (int, float)):
-    try:
-        saldo = eval(input("Insira um número "))
-    except ValueError: 
-        print("ERRO: Insira apenas números")
+while True:
+    numentrada = input("Insira um número ")
+    
+    if numentrada.isdigit():
+        saldo = (numentrada)
+        break
+    else:
+        print("Insira apenas números ")
 
 operação = input("Digite a operação desejada: (soma, subtração, divisão, multiplicação ou nenhuma) ").lower()
 resultado = calculos(operação,saldo)
 
 print(f"Resultado: {resultado}")
 
+print("Bem-vindo à loja PedralhaTEC, escolha entre as categorias disponíveis: HEADSETS - TECLADOS - MOUSES")
+    
 categoria_escolhida = escolher_categoria()
-print(f'{categoria_escolhida}')
 teste1 = produtos_categorias(saldo, subtotal)
-print(f'{teste1}')
+
 
 
 
