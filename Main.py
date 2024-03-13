@@ -1,16 +1,53 @@
-#Melhoria IF ELSE operadores (classe e funcao)
-# Lista Variaveis
+# Lista variaveis
 saldo = None
-escolha = 2
-escolha_op = 0
-compras = [] 
-total_compras = 0
-final_valor = 0
-JUROS = 0.017
-subtotal = 0
+compras = []
+Lheadsets = ['Astro', 'Razer', 'Logitech']
 
-# Funções
+#Input Main
+while True:
+    try:
+        numentrada = int(input("Insira um número "))
+        saldo = numentrada
+        break
+    except ValueError:
+        print("Insira somente números!")
+
+#Função cálculos
+def calculos (operacao, saldo):
+    while operacao not in ["soma", "subtração", "multiplicação", "divisão", "nenhuma"]:
+        operacao = (input("Insira uma operação válida "))
+    
+    if operacao	== "nenhuma":
+        return (f"Seu número sem alterações é: {saldo}")
+    
+    while True:
+        try:
+            valor_inserido = int(input("Insira um valor: "))
+            break
+        except ValueError:
+            print("Insira somente números!")
+    
+    if operacao == "soma":
+        return saldo + (valor_inserido)
+    elif operacao == "subtração":
+        return saldo - (valor_inserido)
+    elif operacao == "multiplicação":
+        return saldo * (valor_inserido)
+    elif operacao == "divisão":
+        return saldo / (valor_inserido)
+
+#Input de qual operação deseja realizar
+operacao = input("Digite a operação desejada: (soma, subtração, divisão, multiplicação ou nenhuma) ").lower()
+#chama a função calculos e a atribui a variavel resultado
+resultado = calculos(operacao,saldo)
+#Printa a variavel resultado q é a solução da def calculos, utilizando os parametros operacao e saldo
+print(f"Resultado: {resultado}")
+
+#Ínicio da minha lojinha
+print("Bem-vindo à loja PedralhaTEC, escolha entre as categorias disponíveis: HEADSETS - TECLADOS - MOUSES")
+#Função de escolha de categoria
 def escolher_categoria():
+
     escolha_categoria = input("Qual categoria deseja visualizar? ").upper()
     
     while escolha_categoria not in ['HEADSETS', 'MOUSES', 'TECLADOS']:
@@ -18,77 +55,25 @@ def escolher_categoria():
         
     return escolha_categoria
 
-def produtos_categorias(saldo, subtotal):
-    global categoria_escolhida
+#Função de escolha de produtos dentro da categoria
+def produtos_categorias():
     
-    Lheadsets = ['Astro', 'Razer', 'Logitech']
-    
-    if categoria_escolhida == 'HEADSETS':
+    #chamando a função escolher categoria, dentro desta outra função
+    if escolher_categoria() == 'HEADSETS':
         headsets = input(f"Temos os seguintes headsets disponíveis:{Lheadsets}, qual deseja comprar? ").title()
+        qtd_headsets = int(input(f"Quantas unidades deseja comprar? "))
+        compras.append(headsets * qtd_headsets)
         
     while headsets not in Lheadsets:
         headsets = input("Insira um headset que esteja disponível. ").title()
         
-    return  
-        
-def calculos (operação, saldo):
-    while operação not in ["soma", "subtração", "multiplicação", "divisão", "nenhuma"]:
-        operação = (input("Insira uma operação válida "))
-    
-    if operação	== "nenhuma":
-        return (f"Seu número sem alterações é: {saldo}")
-    
-    valor_inserido = eval(input("Insira um valor: "))
-        
-    if operação == "soma":
-        return saldo + valor_inserido
-    elif operação == "subtração":
-        return saldo - valor_inserido
-    elif operação == "multiplicação":
-        return saldo * valor_inserido
-    elif operação == "divisão":
-        return saldo / valor_inserido
-    
-#Lista ([]) de Dicionários({})
-# lista_produtos = [{
-#     "headsets": {
-#         "logitech": 299,
-#         "razer": 549,
-#         "astro": 799,
-#     },
-    
-#     "mouses":{
-#         "reddragon": 149,
-#         "corsair": 399,
-#         "hyperx": 449,
-#     },
-    
-#     "teclados":{
-#         "multilaser": 50,
-#         "husky": 299,
-#         "gamer g": 149,
-#     }
-# }]
+    return headsets
 
-#Bloco de Operações Matemáticas
-while True:
-    numentrada = input("Insira um número ")
-    
-    if numentrada.isdigit():
-        saldo = (numentrada)
-        break
-    else:
-        print("Insira apenas números ")
+#Chamando a função produtos_categoria e atribuindo a def a variavel escolha_produto
+escolha_produto = produtos_categorias()
+print (escolha_produto)
+print (compras)
 
-operação = input("Digite a operação desejada: (soma, subtração, divisão, multiplicação ou nenhuma) ").lower()
-resultado = calculos(operação,saldo)
-
-print(f"Resultado: {resultado}")
-
-print("Bem-vindo à loja PedralhaTEC, escolha entre as categorias disponíveis: HEADSETS - TECLADOS - MOUSES")
-    
-categoria_escolhida = escolher_categoria()
-teste1 = produtos_categorias(saldo, subtotal)
 
 
 
