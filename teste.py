@@ -119,5 +119,5 @@ chave = 'a'
 
 # for chave in dict:
 print(f'Chave: {chave}, Valor: {dict[chave]}')
-print(f'valor:{dict["c"]}')
+print(f'Chave: {}')
 
