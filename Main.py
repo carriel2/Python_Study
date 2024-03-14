@@ -108,21 +108,12 @@ def produtos_categorias():
                 print(compras)
         
                 
-            
-            
-
+        
 
 #Chamando a função produtos_categoria e atribuindo a def a variavel escolha_produto
 escolha_produto = produtos_categorias()
 print (escolha_produto)
 print (compras)
-
-
-
-
-
-
-
 
 
 # print('=' * 30)
