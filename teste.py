@@ -113,6 +113,29 @@
 #     resulado_dividido = resultado / 2
 #     return resulado_dividido
 
+# print('=' * 30)
+# print("\tResumo do Pedido")
+# print('=' * 30)
+
+# quantidade_total = quantidade_itens_pedido * compras
+# print(f"Seu total de itens no pedido é de: {quantidade_itens_pedido}")
+# print(f"O total da sua compra é de: {total_compras}")
+ 
+# print(quantidade_total) 
+    
+# while final_valor != 0  and final_valor != 1:
+#     final_valor = eval(input("Insira uma opção válida "))
+    
+# if final_valor == 1:
+#     num_parcelas = eval(input(f"Em quantas vezes deseja parcelar?Digite de 2 a 6 quantas prestações deseja(Máximo de 6x com juros) "))
+#     valor_parcela = (total_compras * (1 + JUROS) ** num_parcelas) / num_parcelas
+    
+#     if num_parcelas <= 6 :
+#         print(f"Sua compra foi parcelada em {num_parcelas}x, com um valor a ser pago por mês de {valor_parcela} ")
+    
+# elif final_valor == 0:
+#     print(f"Já que não deseja parcelar, seu valor total de compra é de {total_compras}")
+
 dict = {'a':1, 'b':2 , 'c':3}
 
 chave = 'a'
