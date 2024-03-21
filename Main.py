@@ -54,7 +54,7 @@ def escolher_produto(categoria):
 
         else:
             print("Insira um produto válido.")
-
+      
 def calcular_total(carrinho):
     return sum(info_produto['quantidade'] * info_produto['preco_unitario'] for info_produto in carrinho.values())
 
@@ -154,5 +154,6 @@ while True:
         print("Insira somente números!")
 
 escolher_produtos(saldo)
+
 
 
