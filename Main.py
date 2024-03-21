@@ -22,6 +22,8 @@ categorias = {
     "TECLADOS": teclados,
 }
 
+print('o print do pe do pedro é preto')
+
 def escolher_produtos(saldo):
     carrinho = {}
     while True:
