@@ -1,125 +1,114 @@
-# Lista variaveis
-saldo = None
-Lheadsets = ['Astro', 'Razer', 'Logitech']
-Lmouses = ['Logitech', 'Hyperx', 'Multilaser']
-Lteclados =['Corsair', 'Reddragon', 'Gamer G']
+# Lista de produtos e preços
+headsets = {
+    "Astro": 500,
+    "Razer": 400,
+    "Logitech": 300,
+}
 
-#Função cálculos
-def calculos (operacao, saldo):
-        while operacao not in ["soma", "subtração", "multiplicação", "divisão", "nenhuma"]:
-            operacao = (input("Insira uma operação válida "))
-        
-        if operacao	== "nenhuma":
-            return (f"Seu número sem alterações é: {saldo}")
-        
-        while True:
-            try:
-                valor_inserido = int(input("Insira um valor: "))
-                break
-            except ValueError:
-                print("Insira somente números!")
-        
-        if operacao == "soma":
-            return saldo + (valor_inserido)
-        elif operacao == "subtração":
-            return saldo - (valor_inserido)
-        elif operacao == "multiplicação":
-            return saldo * (valor_inserido)
-        elif operacao == "divisão":
-            if valor_inserido == 0:
-                return "ERRO: Divisão por 0 não é permitida."
-            else:
-                return saldo / (valor_inserido)
+mouses = {
+    "Logitech": 200,
+    "Hyperx": 150,
+    "Multilaser": 100,
+}
 
-#Função de escolha de categoria
-def escolher_categoria():
+teclados = {
+    "Corsair": 600,
+    "Reddragon": 450,
+    "Gamer G": 350,
+}
 
-    escolha_categoria = input("Qual categoria deseja visualizar? ").upper()
-    
-    while escolha_categoria not in ['HEADSETS', 'MOUSES', 'TECLADOS']:
-        escolha_categoria = input("Insira uma categoria válida: HEADSETS, TECLADOS ou MOUSES ").upper()
-        
-    return escolha_categoria
+categorias = {
+    "HEADSETS": headsets,
+    "MOUSES": mouses,
+    "TECLADOS": teclados,
+}
 
-#Função de escolha de produtos dentro da categoria
-def produtos_categorias(saldo):
-    carrinho = []
-
+def escolher_produtos(saldo):
+    carrinho = {}
+    categoria = None
     while True:
         print("Bem-vindo à loja PedralhaTEC, escolha entre as categorias disponíveis: HEADSETS - TECLADOS - MOUSES")
         escolha_categoria = input("Digite a categoria desejada ou 'Sair' para finalizar a compra: ").upper()
         
-        if escolha_categoria == 'SAIR':
+        if escolha_categoria == "SAIR":
             break
-        
+
         if saldo >= 50:
-            if escolha_categoria == 'HEADSETS':
+            if escolha_categoria in categorias.keys():
+                categoria = categorias[escolha_categoria]
                 while True:
-                    headsets = input(f"Temos os seguintes headsets disponíveis: {Lheadsets}, qual deseja comprar? ").title()
-                    
-                    if headsets in Lheadsets:
+                    produtos = list(eval(escolha_categoria.lower()).keys())
+                    escolha_produto = input(f"Temos os seguintes {escolha_categoria.lower()} disponíveis: {produtos}, qual deseja comprar? ").title()
+
+                    if escolha_produto in produtos:
                         while True:
                             try:
-                                qtd_headsets = int(input(f"Quantas unidades deseja comprar? "))
-                                carrinho.append(f'Categoria - Headset: {headsets} || Quantidade de produtos: {qtd_headsets}')
-                                continuar = input("Deseja continuar comprando headsets? (Sim/Não) ").title()
-                                if continuar != 'Sim':
-                                    break
-                                else:
-                                    break
+                                quantidade = int(input(f"Quantas unidades deseja comprar: "))
+                                break
                             except ValueError:
                                 print("Insira somente números")
-                        break
+
+                        carrinho[escolha_produto] = quantidade
+                        continuar = input("Deseja continuar comprando? (Sim/Não) ").title()
+                        if continuar != "Sim":
+                            break
                     else:
-                        print("Insira um headset que esteja disponível.")
-            
-            elif escolha_categoria == 'MOUSES':
-                while True:
-                    mouses = input(f"Temos os seguintes mouses disponíveis: {Lmouses}, qual deseja comprar? ").title()
-                    
-                    if mouses in Lmouses:
-                        while True:
-                            try:
-                                qtd_mouses = int(input(f"Quantas unidades deseja comprar: "))
-                                carrinho.append(f'Categoria - Mouse: {mouses} || Quantidade de produtos: {qtd_mouses}')
-                                continuar = input("Deseja continuar comprando mouses? (Sim/Não) ").title()
-                                if continuar != 'Sim':
-                                    break
-                                else:
-                                    break
-                            except ValueError:
-                                print("Insira somente números")
-                        break
-                    else:
-                        print("Insira um mouse que esteja disponível.")
-            
-            elif escolha_categoria == 'TECLADOS':
-                while True:
-                    teclados = input(f"Temos os seguintes teclados disponíveis: {Lteclados}, qual deseja comprar? ").title()
-                    
-                    if teclados in Lteclados:
-                        while True:
-                            try:
-                                qtd_teclados = int(input(f"Quantas unidades deseja comprar? "))
-                                carrinho.append(f'Categoria - Teclado: {teclados} || Quantidade de produtos: {qtd_teclados}')
-                                continuar = input("Deseja continuar comprando teclados? (Sim/Não) ").title()
-                                if continuar != 'Sim':
-                                    break
-                                else:
-                                    break
-                            except ValueError:
-                                print("Insira somente números")
-                        break
-                    else:
-                        print("Insira um teclado que esteja disponível.")
+                        print("Insira um produto válido.")
+
         else:
             print("Seu saldo não é suficiente para comprar nenhum produto da loja")
+            break
 
     print("Produtos no carrinho:")
-    for produto in carrinho:
-        print(produto)
+    for produto, quantidade in carrinho.items():
+        print(f"{quantidade} x {produto}")
 
+    total = 0
+    for produto, quantidade in carrinho.items():
+        total += categoria[produto] * quantidade
+
+    print("Total da compra:", total)
     
+    resp_parc = None
+        
+    if total > saldo:
+        resp_parc = str(input("Seu saldo não é suficiente para comprar os produtos do carrinho, deseja parcelar? (S/N)"))
+
+        while resp_parc not in ['S', 'N']:
+            resp_parc = input("Insira somente S ou N!")
+
+        while resp_parc == 'S':
+            qtd_parcela = int(input("Temos opções de parcelamento de até 12x com juros de 1,7% ao mês, qual deseja escolher? "))
+            while qtd_parcela < 1 or qtd_parcela > 12:
+                qtd_parcela = int(input("Insira somente números entre 1 e 12: "))
+
+            # Calculando o valor de cada parcela com juros compostos
+            taxa_juros = 1.7 / 100  # Taxa de juros de 1,7% ao mês
+            valor_parcela_com_juros = total * ((1 + taxa_juros) ** qtd_parcela) / qtd_parcela
+
+            # Calculando o total da compra com juros compostos
+            total_com_juros = valor_parcela_com_juros * qtd_parcela
+
+            print(f"Total da compra com juros: {total_com_juros:.2f}")
+            print(f"Valor de cada parcela com juros: {valor_parcela_com_juros:.2f}")
+
+            confirmacao = input("Deseja confirmar a compra? (S/N): ").upper()
+            while confirmacao not in ['S', 'N']:
+                confirmacao = input("Por favor, insira S para confirmar ou N para cancelar: ").upper()
+
+            if confirmacao == 'N':
+                resp_parc = 'S'
+                
+            elif confirmacao == 'S':
+                print("Compra confirmada!")
+                break
+        
+        if resp_parc == 'N':
+            print("Já que não deseja parcelar, sua compra será cancelada")
+
+# Início do programa
+saldo = None
+
 while True:
     try:
         numentrada = int(input("Insira um número "))
@@ -128,16 +117,5 @@ while True:
     except ValueError:
         print("Insira somente números!")
         
-#Input de qual operação deseja realizar
-operacao = input("Digite a operação desejada: (soma, subtração, divisão, multiplicação ou nenhuma) ").lower()
-
-#chama a função calculos e a atribui a variavel resultado
-resultado = calculos(operacao,saldo)
-
-#Printa a variavel resultado q é a solução da def calculos, utilizando os parametros operacao e saldo
-print(f"Saldo total: {resultado}")
-
-#Chamando a função produtos_categoria e atribuindo a def a variavel escolha_produto
-escolha_produto = produtos_categorias(saldo)
-
+escolher_produtos(saldo)
 
