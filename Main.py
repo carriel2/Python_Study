@@ -1,197 +1,135 @@
-# Funções
-def soma (num1, num2):
-    resultado = num1 + num2
-    return resultado
+headsets = {
+    "Astro": 500,
+    "Razer": 400,
+    "Logitech": 300,
+}
 
-def subt (num1, num2):
-    resultado = num1 - num2
-    return resultado
+mouses = {
+    "Logitech": 200,
+    "Hyperx": 150,
+    "Multilaser": 100,
+}
 
-def mult (num1, num2):
-    resultado = num1 * num2
-    return resultado
+teclados = {
+    "Corsair": 600,
+    "Reddragon": 450,
+    "Gamer G": 350,
+}
 
-def div (num1, num2):
-    resultado = num1 / num2
-    return resultado
+categorias = {
+    "HEADSETS": headsets,
+    "MOUSES": mouses,
+    "TECLADOS": teclados,
+}
 
-# Lista Variaveis
-num_armazenado = eval((input("Insira um Número ")))
-numopd = 0
-escolha = 2
+print('o print do pe do pedro é preto')
 
-#Lista ([]) de Dicionários({})
-lista_produtos = [{
-    "Headsets": {
-        "Logitech": 299,
-        "Razer": 549,
-        "Astro": 799,
-    },
+def escolher_produtos(saldo):
+    carrinho = {}
+    while True:
+        print("Bem-vindo à loja PedralhaTEC, escolha entre as categorias disponíveis: HEADSETS - TECLADOS - MOUSES")
+        escolha_categoria = input("Digite a categoria desejada ou 'Sair' para finalizar a compra: ").upper()
+        
+
+        if escolha_categoria == "SAIR":
+            break
+
+        if saldo >= 50:
+            if escolha_categoria in categorias.keys():
+                categoria = categorias[escolha_categoria]
+                while True:
+                    produtos = list(categoria.keys())
+                    escolha_produto = input(f"Temos os seguintes {escolha_categoria.lower()} disponíveis: {produtos}, qual deseja comprar? ").title()
+
+                    if escolha_produto in produtos:
+                        while True:
+                            try:
+                                quantidade = int(input(f"Quantas unidades deseja comprar: "))
+                                if quantidade <= 0:
+                                    print("A quantidade deve ser maior que zero.")
+                                else:
+                                    break
+                            except ValueError:
+                                print("Insira somente números")
+
+                        if escolha_produto in carrinho:
+                            carrinho[escolha_produto]['quantidade'] += quantidade
+                        else:
+                            preco_produto = categoria[escolha_produto]
+                            carrinho[escolha_produto] = {'quantidade': quantidade, 'preco_unitario': preco_produto}
+                        
+                        continuar = input("Deseja continuar comprando? (Sim/Não) ").title()
+                        if continuar != "Sim":
+                            break
+                    else:
+                        print("Insira um produto válido.")
+
+        else:
+            print("Seu saldo não é suficiente para comprar nenhum produto da loja")
+            break
+
+
+    print("Produtos no carrinho:")
+    for produto, info_produto in carrinho.items():
+        quantidade = info_produto['quantidade']
+        preco_unitario = info_produto['preco_unitario']
+        print(f"{quantidade} x {produto} (Preço unitário: {preco_unitario})")
+
+
+    total = sum(info_produto['quantidade'] * info_produto['preco_unitario'] for info_produto in carrinho.values())
+
+
+    print("Total da compra:", total)
     
-    "Mouses":{
-        "RedDragon": 149,
-        "Corsair": 399,
-        "HyperX": 449,
-    },
-    
-    "Teclados":{
-        "Multilaser": 50,
-        "Husky": 299,
-        "Gamer G": 149,
-    }
-}]
-
-#Bloco de Operações Matemáticas
-while escolha < 0 or escolha > 1 :
-    escolha = eval(input(f"Deseja Realizar uma operação com este valor? Digite 1 para sim e 0 para não "))
-
-    if escolha < 0 or escolha > 1 :
-        print("Número Inválido, insira somente 0 ou 1 ")
+    resp_parc = None
         
-    elif escolha == 0:
-        print(f"Seu número sem alterações é: {num_armazenado}")
+    if total > saldo:
+        resp_parc = input("Seu saldo não é suficiente para comprar os produtos do carrinho, deseja parcelar? (S/N)").upper()
+
+        while resp_parc not in ['S', 'N']:
+            resp_parc = input("Insira somente S ou N!").upper()
+
+        if resp_parc == 'S':
+            while True:
+                qtd_parcela_input = input("Temos opções de parcelamento de até 12x com juros de 1,7% ao mês, qual deseja escolher? ")
+                try:
+                    qtd_parcela = int(qtd_parcela_input)
+                    if qtd_parcela < 1 or qtd_parcela > 12:
+                        raise ValueError("A quantidade de parcelas deve estar entre 1 e 12.")
+                    break
+                except ValueError:
+                    print("Por favor, insira um número inteiro válido para a quantidade de parcelas.")
+                    continue
+
+            taxa_juros = 1.7 / 100  
+            valor_parcela_com_juros = total * ((1 + taxa_juros) ** qtd_parcela) / qtd_parcela
+            total_com_juros = valor_parcela_com_juros * qtd_parcela
+
+            print(f"Total da compra com juros: {total_com_juros:.2f}")
+            print(f"Valor de cada parcela com juros: {valor_parcela_com_juros:.2f}")
+
+            confirmacao = input("Deseja confirmar a compra? (S/N): ").upper()
+            while confirmacao not in ['S', 'N']:
+                confirmacao = input("Por favor, insira S para confirmar ou N para cancelar: ").upper()
+
+            if confirmacao == 'N':
+                resp_parc = 'S'
+                
+            elif confirmacao == 'S':
+                print("Compra confirmada!")
         
-    elif escolha == 1:
-    
-        escolha_op = 0
-    
-        while escolha_op < 1 or escolha_op > 4:
-            escolha_op = eval(input(f"Qual operação deseja realizar? Escolha entre Subtração, Soma, Multiplicação e Divisão de 1 a 4: {1 ,2 ,3, 4} "))
-            
-        if escolha_op <1 or  escolha_op > 4 :
-            print("Número Inválido, insira um valor de 1 a 4") 
+        if resp_parc == 'N':
+            print("Já que não deseja parcelar, sua compra será cancelada")
+
+saldo = None
+
+while True:
+    try:
+        numentrada = int(input("Insira um número "))
+        saldo = numentrada
+        break  
+    except ValueError:
+        print("Insira somente números!")
         
-    
-        if escolha_op  == 1 :
-            val_subt = eval(input("Insira o valor que deseja subtrair: " ))
-            res_subt = subt(val_subt, num_armazenado)
-            resultados = res_subt
-            print(f"Seu valor em reais após subtrar é: {res_subt}")
-        
-        elif escolha_op == 2 :
-            val_soma = eval(input("Insira o valor que deseja somar: "))
-            res_soma = soma(val_soma, num_armazenado)
-            resultados = res_soma
-            print(f"Seu valor em reais após somar é: {res_soma}")
-        
-        elif escolha_op == 3 :
-            val_mult = eval(input("Insira o valor para ser multiplicado: "))
-            res_mult = mult(val_mult, num_armazenado)
-            resultados = res_mult
-            print(f"Seu valor em reais após somar é: {res_mult}")
-      
-        elif escolha_op == 4 :
-            val_div = eval(input("Insira o valor para ser dividido: ")) 
-            res_div = div(val_div, num_armazenado)
-            resultados = res_div
-            print(f"Seu valor em reais após dividir é: {res_div}")
-            resultados
-            num_armazenado = resultados
-
-num_armazenado
-
-#Bloco de perguntas lojinha
-compras = [] 
-total_compras = 0
-acessos = 0
-while num_armazenado >= 50:
-    
-    if acessos > 0:
-        input('Deseja comprar mais algum produto? Digite Sim ou Não.')
-    
-    pergunta_1 = input("""Bem vindo a loja PedralhaTEC, as categorias de produto que temos atualmente são as seguinte: HEADSETS -- MOUSES -- TECLADOS\n
-    Escolha uma dessas 3 opções digitando o nome da categoria: """)
-        
-    acessos += 1
-           
-    if 'Sim':           
-
-
-        if "HEADSETS" == pergunta_1:
-            pergunta2 = input(f"Temos os seguintes Headsets disponíveis, selecione qual deseja comprar:{lista_produtos[0]['Headsets']} ")
-            
-            if "Astro" == pergunta2:
-                num_armazenado = subt(num_armazenado, 799)
-                print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado}")
-                compras.append('Astro - 799')
-                total_compras += 799
-        
-            elif "Logitech" == pergunta2:
-                num_armazenado = subt(num_armazenado, 299)
-                print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
-                compras.append('Logitech - 299')
-                total_compras += 299
-        
-            elif "Razer" == pergunta2:
-                num_armazenado = subt(num_armazenado, 549)
-                print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
-                compras.append('Razer - 549')
-                total_compras += 549
-            
-            else:
-                print("Insira um produto válido")
-
-        elif "MOUSES" == pergunta_1:
-            pergunta2 = input(f"Temos os seguintes Mouses disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Mouses']} ")
-
-            if "RedDragon" == pergunta2:
-                    num_armazenado = subt(num_armazenado, 149)
-                    print(f"Compra realizada com sucesso! Seu novo saldo é de {num_armazenado} ")
-                    compras.append('RedDragon - 149')
-                    total_compras += 149
-            
-            elif "Corsair" == pergunta2:
-                num_armazenado = subt(num_armazenado, 399)
-                print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
-                compras.append('Corsair - 399')
-                total_compras += 399
-
-            elif "HyperX" == pergunta2:
-                num_armazenado = subt(num_armazenado, 449)
-                print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
-                compras.append('HyperX - 449')
-                total_compras += 449
-
-            else:
-                print("Insira um produto válido")
-            
-        elif "TECLADOS" == pergunta_1:
-            pergunta2 = input(f"Temos os seguintes Teclados disponíveis, selecione qual deseja comprar: {lista_produtos[0]['Teclados']} ")
-        
-            if "Multilaser" == pergunta2:
-                    num_armazenado = subt(num_armazenado, 50)
-                    print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado}")
-                    compras.append('Multilaser - 50 reais')
-                    total_compras += 50
-
-            elif "Husky" == pergunta2:
-                    num_armazenado = subt(num_armazenado, 299)
-                    print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado} ")
-                    compras.append('Husky - 299 reais')
-                    total_compras += 299
-            
-            elif "Gamer G" == pergunta2:
-                    num_armazenado = subt(num_armazenado, 149)
-                    print(f"Compra realizada com sucesso! Seu novo saldo é de: {num_armazenado}")
-                    compras.append('Gamer G - 149')
-                    total_compras += 149
-                    
-if num_armazenado < 50:
-        print("Saldo Insuficiente!")
-        
-print(f'Seu carrinho atual é: {compras}\n Com valor total de {total_compras}')
-
-
-name = input("What is your name? ")
-print("Hello, " + name + "!")
-
-     
-    
-          
-
-
-          
-          
-          
-
+escolher_produtos(saldo)
 
