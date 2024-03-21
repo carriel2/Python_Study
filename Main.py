@@ -30,6 +30,7 @@ def escolher_produtos(saldo):
         print("Bem-vindo à loja PedralhaTEC, escolha entre as categorias disponíveis: HEADSETS - TECLADOS - MOUSES")
         escolha_categoria = input("Digite a categoria desejada ou 'Sair' para finalizar a compra: ").upper()
         
+
         if escolha_categoria == "SAIR":
             break
 
@@ -67,13 +68,16 @@ def escolher_produtos(saldo):
             print("Seu saldo não é suficiente para comprar nenhum produto da loja")
             break
 
+
     print("Produtos no carrinho:")
     for produto, info_produto in carrinho.items():
         quantidade = info_produto['quantidade']
         preco_unitario = info_produto['preco_unitario']
         print(f"{quantidade} x {produto} (Preço unitário: {preco_unitario})")
 
+
     total = sum(info_produto['quantidade'] * info_produto['preco_unitario'] for info_produto in carrinho.values())
+
 
     print("Total da compra:", total)
     
