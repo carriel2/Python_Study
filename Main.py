@@ -1,4 +1,3 @@
-# Lista de produtos e preços
 headsets = {
     "Astro": 500,
     "Razer": 400,
@@ -25,7 +24,6 @@ categorias = {
 
 def escolher_produtos(saldo):
     carrinho = {}
-    categoria = None
     while True:
         print("Bem-vindo à loja PedralhaTEC, escolha entre as categorias disponíveis: HEADSETS - TECLADOS - MOUSES")
         escolha_categoria = input("Digite a categoria desejada ou 'Sair' para finalizar a compra: ").upper()
@@ -37,18 +35,26 @@ def escolher_produtos(saldo):
             if escolha_categoria in categorias.keys():
                 categoria = categorias[escolha_categoria]
                 while True:
-                    produtos = list(eval(escolha_categoria.lower()).keys())
+                    produtos = list(categoria.keys())
                     escolha_produto = input(f"Temos os seguintes {escolha_categoria.lower()} disponíveis: {produtos}, qual deseja comprar? ").title()
 
                     if escolha_produto in produtos:
                         while True:
                             try:
                                 quantidade = int(input(f"Quantas unidades deseja comprar: "))
-                                break
+                                if quantidade <= 0:
+                                    print("A quantidade deve ser maior que zero.")
+                                else:
+                                    break
                             except ValueError:
                                 print("Insira somente números")
 
-                        carrinho[escolha_produto] = quantidade
+                        if escolha_produto in carrinho:
+                            carrinho[escolha_produto]['quantidade'] += quantidade
+                        else:
+                            preco_produto = categoria[escolha_produto]
+                            carrinho[escolha_produto] = {'quantidade': quantidade, 'preco_unitario': preco_produto}
+                        
                         continuar = input("Deseja continuar comprando? (Sim/Não) ").title()
                         if continuar != "Sim":
                             break
@@ -60,33 +66,37 @@ def escolher_produtos(saldo):
             break
 
     print("Produtos no carrinho:")
-    for produto, quantidade in carrinho.items():
-        print(f"{quantidade} x {produto}")
+    for produto, info_produto in carrinho.items():
+        quantidade = info_produto['quantidade']
+        preco_unitario = info_produto['preco_unitario']
+        print(f"{quantidade} x {produto} (Preço unitário: {preco_unitario})")
 
-    total = 0
-    for produto, quantidade in carrinho.items():
-        total += categoria[produto] * quantidade
+    total = sum(info_produto['quantidade'] * info_produto['preco_unitario'] for info_produto in carrinho.values())
 
     print("Total da compra:", total)
     
     resp_parc = None
         
     if total > saldo:
-        resp_parc = str(input("Seu saldo não é suficiente para comprar os produtos do carrinho, deseja parcelar? (S/N)"))
+        resp_parc = input("Seu saldo não é suficiente para comprar os produtos do carrinho, deseja parcelar? (S/N)").upper()
 
         while resp_parc not in ['S', 'N']:
-            resp_parc = input("Insira somente S ou N!")
+            resp_parc = input("Insira somente S ou N!").upper()
 
-        while resp_parc == 'S':
-            qtd_parcela = int(input("Temos opções de parcelamento de até 12x com juros de 1,7% ao mês, qual deseja escolher? "))
-            while qtd_parcela < 1 or qtd_parcela > 12:
-                qtd_parcela = int(input("Insira somente números entre 1 e 12: "))
+        if resp_parc == 'S':
+            while True:
+                qtd_parcela_input = input("Temos opções de parcelamento de até 12x com juros de 1,7% ao mês, qual deseja escolher? ")
+                try:
+                    qtd_parcela = int(qtd_parcela_input)
+                    if qtd_parcela < 1 or qtd_parcela > 12:
+                        raise ValueError("A quantidade de parcelas deve estar entre 1 e 12.")
+                    break
+                except ValueError:
+                    print("Por favor, insira um número inteiro válido para a quantidade de parcelas.")
+                    continue
 
-            # Calculando o valor de cada parcela com juros compostos
-            taxa_juros = 1.7 / 100  # Taxa de juros de 1,7% ao mês
+            taxa_juros = 1.7 / 100  
             valor_parcela_com_juros = total * ((1 + taxa_juros) ** qtd_parcela) / qtd_parcela
-
-            # Calculando o total da compra com juros compostos
             total_com_juros = valor_parcela_com_juros * qtd_parcela
 
             print(f"Total da compra com juros: {total_com_juros:.2f}")
@@ -101,19 +111,17 @@ def escolher_produtos(saldo):
                 
             elif confirmacao == 'S':
                 print("Compra confirmada!")
-                break
         
         if resp_parc == 'N':
             print("Já que não deseja parcelar, sua compra será cancelada")
 
-# Início do programa
 saldo = None
 
 while True:
     try:
         numentrada = int(input("Insira um número "))
         saldo = numentrada
-        break
+        break  
     except ValueError:
         print("Insira somente números!")
         
